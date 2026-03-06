@@ -1,6 +1,8 @@
-def apply_decision(df):
-    threshold=df["anomaly_score"].quantile(0.95)
-    
-    df["decision"]=df["anomaly_score"].apply(lambda x: "Anomalous" if x>=threshold else "Normal")
+def apply_decision(df,threshold):
+    df["rule_anomaly"]=df["anomaly_score"].apply(lambda x: 1 if x> threshold else 0)
 
-    return df,threshold
+    df["final_anomaly"]=(df["rule_anomaly"]+df["iforest_anomaly"])
+
+    df["decision"]=df["final_anomaly"].apply(lambda x: "Anomalous" if x>=1 else "Normal")
+
+    return df
