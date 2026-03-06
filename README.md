@@ -8,7 +8,7 @@ This project implements a Hybrid Review Authenticity Detection System designed f
 
 Try the deployed application here:
 
-https://hybrid-detection-system-3z55rnheuv.streamlit.app/
+https://hybrid-detection-system-3z55rnheuv.streamlit.app/ 
 
 ---
 
@@ -82,39 +82,6 @@ https://hybrid-detection-system-3z55rnheuv.streamlit.app/
 
 ---
 
-## System Architecture section
-
-The system follows a hybrid pipeline combining rule-based anomaly scoring with machine learning based anomaly detection.
-
-User Review Input
-        │
-        ▼
-Feature Engineering
-(sentiment analysis, review length,
-rating normalization, reviewer behavior)
-        │
-        ▼
-Anomaly Scoring System
-(rule-based anomaly signals)
-        │
-        ▼
-Isolation Forest Model
-(unsupervised anomaly detection)
-        │
-        ▼
-Hybrid Decision Engine
-(combines rule-based score + ML prediction)
-        │
-        ▼
-Explainable Output
-(anomaly score, decision, and flagged reasons)
-        │
-        ▼
-Streamlit Web Interface
-(interactive dashboard for review analysis)
-
----
-
 ## Machine Learning Model
 
 The system uses Isolation Forest, an unsupervised anomaly detection algorithm designed to identify rare patterns in data.
@@ -146,23 +113,19 @@ These attributes were used to derive behavioural and linguistic features for ano
 ## 📁 Project Structure
 
 Hybrid-Detection-System
-Hybrid-Detection-System
-│
-├── app.py                     # Streamlit application interface
-├── requirements.txt           # Python dependencies
-├── Dockerfile                 # Container configuration
-├── README.md                  # Project documentation
-│
-├── data
-│   ├── anomaly_scores.csv     # Dataset anomaly score distribution
-│   └── threshold.pkl          # Learned anomaly threshold for inference
-│
-└── src
-    ├── feature_engineering.py # Feature extraction pipeline
-    ├── anomaly_scoring.py     # Rule-based anomaly score calculation
-    ├── isolation_model.py     # Isolation Forest anomaly detection model
-    ├── decision_engine.py     # Hybrid decision logic
-    └── visualization.py       # Anomaly score visualizations
+- app.py  
+- requirements.txt
+- Dockerfile
+-  README.md
+- data
+   -  anomaly_scores.csv
+   - threshold.pkl
+- src
+   - feature_engineering.py
+   - anomaly_scoring.py
+   - isolation_model.py
+   - decision_engine.py
+   - visualization.py
 
 
 How the Detection Works
