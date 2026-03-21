@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust Lens - Review Authenticity Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Trust Lens</h1>
+        <p class="subtitle">Analyze reviews to detect potential fake or manipulated content</p>
+
+        <form method="POST">
+            <div class="examples-section">
+                <label class="examples-label">Try Examples:</label>
+                <div class="example-buttons">
+                    <button type="button" class="example-btn" onclick="loadExample('normal')">Normal Review</button>
+                    <button type="button" class="example-btn" onclick="loadExample('mismatch')">Rating Mismatch</button>
+                    <button type="button" class="example-btn" onclick="loadExample('spam')">Spam Review</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="review">Review Text</label>
+                <textarea id="review" name="review" rows="5" placeholder="Paste the review you want to analyze..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <div class="slider-container">
+                    <input type="range" id="rating" name="rating" min="1" max="5" value="5">
+                    <span class="rating-value" id="ratingValue">5</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Analyze Review</button>
+        </form>
+
+        {% if result %}
+        <div class="result-section">
+            <div class="result-header">
+                <div>
+                    <div class="score-display">Risk Score: <span class="score-value">{{ (result.risk * 100) | round(2) }}%</span></div>
+                    <div class="threshold-info">Threshold: {{ threshold }}</div>
+                </div>
+                <div class="decision-badge {% if result.decision == 'Authentic' %}authentic{% else %}fake{% endif %}">
+                    {{ result.decision }}
+                </div>
+            </div>
+
+            {% if result.mismatch > 0.3 or result.length_dev > 0.3 or result.emotion > 0.5 %}
+            <div class="reasons-list">
+                <h3>Analysis Insights</h3>
+                <ul>
+                    {% if result.mismatch > 0.5 %}
+                        <li>Rating-sentiment mismatch detected</li>
+                    {% endif %}
+                    {% if result.length_dev > 0.3 %}
+                        <li>Unusual review length pattern</li>
+                    {% endif %}
+                    {% if result.emotion > 0.5 %}
+                        <li>Emotionally exaggerated language detected</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                ✓ No significant authenticity concerns detected
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const examples = {
+            normal: {
+                text: "I bought this kurti last month and have worn it several times. The fabric is comfortable and breathable, especially in warm weather. The stitching is neat and the color hasn’t faded after multiple washes. Overall, a good purchase for the price.",
+                rating: 5
+            },
+            mismatch: {
+                text: "This dress is of very poor quality. The fabric feels cheap and the stitching started coming apart after one wash. Definitely not worth the price.",
+                rating: 5
+            },
+            spam: {
+                text: "BUY NOW!!! BEST DEAL EVER!!! CLICK HERE!!! LIMITED TIME OFFER!!! FREE SHIPPING!!! DON'T MISS OUT!!! GET YOURS TODAY!!! AMAZING AMAZING AMAZING!!!",
+                rating: 1
+            }
+        };
+
+        function loadExample(type) {
+            const example = examples[type];
+            document.getElementById('review').value = example.text;
+            document.getElementById('rating').value = example.rating;
+            document.getElementById('ratingValue').textContent = example.rating;
+        }
+
+        document.getElementById('rating').addEventListener('input', function() {
+            document.getElementById('ratingValue').textContent = this.value;
+        });
+    </script>
+</body>
+</html>
