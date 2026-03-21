@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <h1>Review History</h1>
+        <form method="POST" action="/clear_history" style="margin-bottom:20px;">
+            <button type="submit" class="clear-btn">Clear History</button>
+        </form>
+        <table class="history-table">
+            <tr>
+                <th>ID</th>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>Score</th>
+                <th>Risk</th>
+                <th>Decision</th>
+            </tr>
+
+            {% for r in reviews %}
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.review_text }}</td>
+                <td>{{ r.rating }}</td>
+                <td>{{ "%.2f"|format(r.score) }}</td>
+                <td>{{ (r.risk * 100)|round(2) }}%</td>
+                <td>{{ r.decision }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+        <a href="/" class="back-btn">⬅ Back to Home</a>
+
+    </div>
+</body>
+</html>

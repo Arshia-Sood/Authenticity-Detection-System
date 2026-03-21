@@ -34,7 +34,7 @@ def predict_review(review_text,star_rating):
 
     result = {
         "score": float(df.loc[0, "anomaly_score"]),
-        "risk": normalized_score, 
+        "risk": float(normalized_score), 
         "decision": df.loc[0, "decision"],
         "mismatch": float(df.loc[0, "mismatch"]),
         "length_dev": float(df.loc[0, "length_deviation"]),
