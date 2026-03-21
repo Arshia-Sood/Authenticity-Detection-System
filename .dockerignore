@@ -6,3 +6,5 @@ __pycache__
 .vscode
 .ipynb_checkpoints
 *.log
+data/anomaly_scores.csv
+data/preprocessed/
