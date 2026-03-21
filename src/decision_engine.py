@@ -3,6 +3,6 @@ def apply_decision(df,threshold):
 
     df["final_anomaly"]=(df["rule_anomaly"]+df["iforest_anomaly"])
 
-    df["decision"]=df["final_anomaly"].apply(lambda x: "Anomalous" if x>=1 else "Normal")
+    df["decision"]=df["final_anomaly"].apply(lambda x: "Anomalous" if x==2 else "Normal")
 
     return df
