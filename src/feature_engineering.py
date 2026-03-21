@@ -15,8 +15,7 @@ def add_features(df):
 
     df["mismatch_raw"]=abs(df["star_norm"]-df["sentiment_score"])
     
-    tolerance=0.2
-    df["mismatch"]=df["mismatch_raw"].apply(lambda x:max(0,x-tolerance))
+    df["mismatch"]=df["mismatch_raw"]
 
     df["word_count"]=df["reviewText"].apply(lambda x: len(str(x).split()))
 

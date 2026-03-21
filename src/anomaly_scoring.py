@@ -20,7 +20,7 @@ def compute_anomaly_score(df):
 
     df["detail_bonus"]=df["word_count"].apply(lambda x:0.3 if x>40 else 0)
 
-    df["anomaly_score"]=(0.5*df["mismatch_norm"]+0.2*df["length_deviation"]+0.15*df["emotion_score"]+0.15*df["reviewer_activity_score"]-df["detail_bonus"])
+    df["anomaly_score"]=(0.5*df["mismatch"]+0.2*df["length_deviation"]+0.15*df["emotion_score"]+0.15*df["reviewer_activity_score"]-df["detail_bonus"])
 
     df.loc[(df["sentiment_score"]>0.8) & (df["star_norm"]>0.8) & (df["word_count"]<10), "anomaly_score"]-=0.25
 
