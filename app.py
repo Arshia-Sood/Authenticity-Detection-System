@@ -17,8 +17,7 @@ class Review(db.Model):
     risk=db.Column(db.Float)
     decision=db.Column(db.String(20))
 
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
 @app.route("/",methods=["GET","POST"])
