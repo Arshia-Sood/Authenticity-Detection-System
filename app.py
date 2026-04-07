@@ -5,7 +5,7 @@ import os
 
 app=Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get("DATABASE_URL","postgresql://postgres:arshia123@host.docker.internal:5433/review_db")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db=SQLAlchemy(app)
 
@@ -17,6 +17,9 @@ class Review(db.Model):
     risk=db.Column(db.Float)
     decision=db.Column(db.String(20))
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 @app.route("/",methods=["GET","POST"])
 def home():
@@ -55,3 +58,4 @@ def clear_history():
 
 if __name__=="__main__":
     app.run(host="0.0.0.0", port=5000)
+    
