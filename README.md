@@ -8,8 +8,7 @@ This project implements a Hybrid Review Authenticity Detection System designed f
 
 Try the deployed application here:
 
-https://authenticity-detection 
-system.onrender.com 
+https://authenticity-detectionsystem.onrender.com 
 
 ---
 
