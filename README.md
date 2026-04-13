@@ -8,7 +8,8 @@ This project implements a Hybrid Review Authenticity Detection System designed f
 
 Try the deployed application here:
 
-https://hybrid-detection-system-3z55rnheuv.streamlit.app/ 
+https://authenticity-detection 
+system.onrender.com 
 
 ---
 
@@ -164,13 +165,6 @@ These features are combined to compute the final anomaly score.
 - Real-time moderation API
 
 - Multi-product review aggregation
-
----
-
-## Project link 
-
-https://authenticity-detection 
-system.onrender.com 
 
 ---
 
