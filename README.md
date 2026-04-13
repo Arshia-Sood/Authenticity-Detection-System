@@ -76,7 +76,7 @@ https://hybrid-detection-system-3z55rnheuv.streamlit.app/
 
 - VADER Sentiment Analysis
 
-- Streamlit
+- Flask
 
 - Docker
 
@@ -152,35 +152,6 @@ These features are combined to compute the final anomaly score.
 
 ---
 
-## Running the Project Locally
-
-Clone the repository:
-```bash
-git clone https://github.com/yourusername/hybrid-review-detection.git
-cd hybrid-review-detection
-```
-
-Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-Run the application:
-```bash
-streamlit run app.py
-```
-
-Build the Docker image:
-```bash
-docker build -t review-detector .
-```
-
-Run the container:
-```bash
-docker run -p 8501:8501 review-detector
-```
-
----
 
 ## Possible enhancements:
 
@@ -193,6 +164,13 @@ docker run -p 8501:8501 review-detector
 - Real-time moderation API
 
 - Multi-product review aggregation
+
+---
+
+## Project link 
+
+https://authenticity-detection 
+system.onrender.com 
 
 ---
 
